@@ -31,40 +31,57 @@ const CreditDebitAmount = () => {
       <h2>Credit/Debit Amount</h2>
       <input
         type="text"
-        placeholder="Search by Account Number"
+        className='form-control' placeholder="Search by Account Number"
         value={accountNumber}
         onChange={(e) => setAccountNumber(e.target.value)}
       />
-      <button onClick={handleSearch}>Search User</button>
+      <button className=' btn btn-primary form-control mt-1' onClick={handleSearch}>Search User</button>
 
       {user && (
-        
-      <div >
-       
-          <h3>User Profile</h3>
-          <div className=" col-md-6 mt-3">
-            <img src="" alt="" style={{height:"100px", width:"100px", borderRadius:"50%"}}/>
-          <p className='mt-2'>Name: {user.name}</p>
+
+        <div className='container-fluid mt-3' style={{ border: "2px solid blue", borderRadius: "10px" }} >
+
+          <div className="row ">
+            <div className="col-md-6">
+              <div className="row">
+                <div className="col-md-4">
+                  <img src="" alt="" style={{ height: "100px", width: "100px", borderRadius: "50%", border: "2px solid green", marginTop: "20px" }} />
+                </div>
+                <div className="col-md-8">
+                  <h4 className='mt-3'> {user.name}</h4>
+                  <span className='d-flex align-items-center mt-0' >
+                    <i className='bi bi-envelope text-success fw-bold '></i>
+                    <p className='mb-0 fw-bold' style={{ marginLeft: "5px" }}> : {user.email}</p>
+                  </span>
+                  <span className='d-flex align-items-center mt-0' >
+                    <i className='bi bi-telephone text-success fw-bold '></i>
+                    <p className='mb-0 fw-bold' style={{ marginLeft: "5px" }}> : {user.phone}</p>
+                  </span>
+                  <span className='fw-bold mt-2 mb-2 d-flex align-items-center'>
+                    <i className='bi bi-wallet2 me-2 text-success fw-bold'></i> &nbsp;: {user.totalAmount}
+                  </span>
+
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 text-center profile-row" style={{ display: "grid" }}>
+              <h4 className='mt-2'>Update Amount</h4>
+              <input
+                type="number"
+                className='form-control mb-2' placeholder="Enter Amount"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+              />
+              <select onChange={(e) => setTransactionType(e.target.value)} className='form-control mb-2'>
+                <option value="credit">Credit</option>
+                <option value="debit">Debit</option>
+              </select>
+              <button className=' btn btn-success form-control mt-1 mb-3' onClick={handleUpdateAmount}>Update Amount</button>
+            </div>
           </div>
-         <div className="col-md-6">
-         <p>Email: {user.email}</p>
-          <p>Phone: {user.phone}</p>
-          <p>Total Amount: {user.totalAmount}</p>
-         </div>
-          <h4>Update Amount</h4>
-          <input
-            type="number"
-            placeholder="Enter Amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
-          <select onChange={(e) => setTransactionType(e.target.value)}>
-            <option value="credit">Credit</option>
-            <option value="debit">Debit</option>
-          </select>
-          <button onClick={handleUpdateAmount}>Update Amount</button>
+
         </div>
-        
+
       )}
     </div>
   );
